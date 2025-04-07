@@ -62,6 +62,14 @@ header h1 {
     border-color: #4caf50; /* Vert */
 }
 
+.type.electrique{
+    border-color: #fdfa21; /* Jaune */
+}
+
+.type.glace{
+    border-color: #60b8ff; /* Bleu */
+}
+
 /* Effet au survol */
 .type:hover {
     transform: translateY(-5px);
