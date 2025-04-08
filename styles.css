@@ -1,15 +1,19 @@
+@font-face {
+	font-family: 'Pokemon';
+	src:url(/Pokemon\ Hollow.ttf), url(/Pokemon\ Solid.ttf);
+}
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
+html{
+    background-color: #131212;
+}
+
 /* Corps du document */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #131212;
-    display: flex;
+body { 
+    color: #000000;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
@@ -17,14 +21,30 @@ body {
     min-height: 100vh;
 }
 
+.nom{
+    font-family: 'Pokemon';
+    font-size: 35px;
+    text-align: center;
+}
+
 /* Style du header */
 header {
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 header h1 {
     font-size: 2.5rem;
-    color: #131212;
+    color: #fcfcfc;
+}
+
+.search-box {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #7b61ff;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 /* Section contenant les cartes Pokémon */
@@ -37,12 +57,15 @@ header h1 {
     margin: 0 auto;
 }
 
+.image {
+}
+
 /* Style de chaque carte Pokémon */
-.type {
+
+.carte {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(151, 151, 151, 0.89);
     padding: 15px;
     text-align: center;
     border: 5px solid transparent;
@@ -50,16 +73,36 @@ header h1 {
 }
 
 .legendaire{
-    background: linear-gradient(rgba(252, 252, 252, 0.63),rgba(133, 133, 133, 0.226));
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    padding: 15px;
+    box-shadow: 0 2px 10px rgba(151, 151, 151, 0.89);
     text-align: center;
     border: 5px solid transparent;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
 
+.legendaire::after{
+    content:'';
+    position: absolute;
+    height:100%;
+    width:100%;
+    background: linear-gradient(rgba(241, 227, 175, 0.637), rgba(212, 200, 151, 0.788));
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 10px;
+    border-radius: 10px;
+    filter:blur(0.2rem);
+}
+
+.legendaire::before{
+    content: url(Master_Ball.webp);
+    transform: scale(0.25);
+    position: absolute;
+    top: -100px;
+    left: -100px;
+}
 
 /* Définition des couleurs pour chaque type de Pokémon */
 .type.feu {
@@ -83,7 +126,12 @@ header h1 {
 }
 
 /* Effet au survol */
-.type:hover {
+.carte:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px
+    box-shadow: 0 6px;
 }
+
+.cart:hover {
+    box-shadow: 0 6px;
+}
+
