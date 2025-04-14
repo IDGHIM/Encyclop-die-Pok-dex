@@ -4,7 +4,7 @@ const searchInput = document.getElementById('searchInput');
 // Écouter l'événement de saisie dans le champ de recherche
 searchInput.addEventListener('input', function() {
     // Sélectionner toutes les fiches de Pokémon
-    const pokemonCards = document.querySelectorAll('.pokemon-card');
+    const pokemonCards = document.querySelectorAll('.carte');
 
     // Récupérer la valeur de la saisie
     const searchQuery = searchInput.value.toLowerCase(); // Mettre en minuscules pour ne pas être sensible à la casse
