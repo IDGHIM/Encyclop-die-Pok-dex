@@ -11,7 +11,7 @@ searchInput.addEventListener('input', function() {
 
     // Filtrer les fiches en fonction de la saisie
     pokemonCards.forEach(function(card) {
-        const pokemonName = card.querySelector('h2').textContent.toLowerCase();
+        const pokemonName = card.querySelector('nom').textContent.toLowerCase();
         
         // Si le nom du Pokémon contient la requête de recherche, on le garde visible, sinon on le cache
         if (pokemonName.includes(searchQuery)) {
