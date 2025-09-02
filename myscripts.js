@@ -40,6 +40,18 @@ function getTypeFR(type) {
   return map[type] || type;
 }
 
+function getStatNameFR(statName) {
+  const statMap = {
+    'hp': 'PV',
+    'attack': 'Attaque',
+    'defense': 'Défense',
+    'special-attack': 'Attaque Spé.',
+    'special-defense': 'Défense Spé.',
+    'speed': 'Vitesse'
+  };
+  return statMap[statName] || statName;
+}
+
 const typeColors = {
   normal: '#A8A878',
   feu: '#F08030',
@@ -115,13 +127,37 @@ async function fetchPokemon() {
 
     const typesHTML = typesFR.map(t => `<span class="type">${t}</span>`).join(' ');
 
+    // Génération des statistiques
+    const statsHTML = data.stats.map(stat => {
+      const statNameFR = getStatNameFR(stat.stat.name);
+      const statValue = stat.base_stat;
+      
+      // Calcul du pourcentage pour la barre (max théorique à 255 pour les stats Pokemon)
+      const percentage = Math.min((statValue / 255) * 100, 100);
+      
+      return `
+        <div class="stat-row">
+          <span class="stat-name">${statNameFR}</span>
+          <div class="stat-bar">
+            <div class="stat-fill" style="width: ${percentage}%"></div>
+          </div>
+          <span class="stat-value">${statValue}</span>
+        </div>
+      `;
+    }).join('');
+
     container.innerHTML = `
       <section class="carte" style="--bg-gradient: ${bgGradient}">
         <h2>${nameFR}</h2>
         <p>N°${data.id.toString().padStart(4, '0')}</p>
-        <div>${typesHTML}</div>
+        <div class="types">${typesHTML}</div>
         <img src="${data.sprites.front_default}" alt="${nameFR}" />
-        <p><em>${descriptionFR}</em></p>
+        <p class="description"><em>${descriptionFR}</em></p>
+        
+        <div class="stats-container">
+          <h3>Statistiques de base</h3>
+          ${statsHTML}
+        </div>
       </section>
     `;
   } catch (e) {
